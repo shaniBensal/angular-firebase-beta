@@ -1,6 +1,10 @@
-<div class="container">
-  <div class="row">
-    <app-upload-header></app-upload-header>
-    <app-upload-list></app-upload-list>
+<div
+  class="container border border-dark border-4 window-wrapper position-absolute rounded bg-dark "
+>
+  <div class="row h-100">
+    <div class="d-flex flex-column w-100">
+      <app-upload-header [fileCount]="selectedFiles.length"></app-upload-header>
+      <app-upload-list class="h-100"></app-upload-list>
+    </div>
   </div>
 </div>

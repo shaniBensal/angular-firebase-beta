@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FileModel } from 'src/app/models/file.model';
 
 @Component({
   selector: 'app-upload-item',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-item.component.scss']
 })
 export class UploadItemComponent implements OnInit {
-
+  @Input() public fileUpload: FileModel;
   constructor() { }
 
   ngOnInit() {

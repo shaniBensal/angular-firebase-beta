@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-upload-header',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-header.component.scss']
 })
 export class UploadHeaderComponent implements OnInit {
-
+  @Input() public fileCount: number = 0;
   constructor() { }
 
   ngOnInit() {

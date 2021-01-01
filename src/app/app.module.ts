@@ -10,6 +10,7 @@ import { ApiService } from './_service/api.service';
 import { UploadWindowComponent } from './components/upload-window/upload-window.component';
 import { MainComponent } from './pages/main/main.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { IconsModule } from './icons.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    IconsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
