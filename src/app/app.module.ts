@@ -12,6 +12,20 @@ import { MainComponent } from './pages/main/main.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IconsModule } from './icons.module';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC2CTrSgnxBimB3NK8mxclcaXK7bfnIXLc",
+  authDomain: "beta-77952.firebaseapp.com",
+  projectId: "beta-77952",
+  storageBucket: "beta-77952.appspot.com",
+  messagingSenderId: "584449357416",
+  appId: "1:584449357416:web:85e6982b8d65cc07f4addd",
+  measurementId: "G-27SDWH3G0E"
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +40,10 @@ import { IconsModule } from './icons.module';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    AngularFireModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
     IconsModule
   ],
   providers: [ApiService],
