@@ -15,10 +15,10 @@ export class UploadItemComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(){
-    this.apiService.pushFileToStorage(this.fileUpload);
-    this.apiService.uploadProgress$.subscribe(res => {
-      this.$percentage = res
-    });
+    // this.apiService.pushFileToStorage(this.fileUpload);
+    // this.apiService.uploadProgress$.subscribe(res => {
+    //   this.$percentage = res
+    // });
   };
 
 

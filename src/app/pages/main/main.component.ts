@@ -33,7 +33,6 @@ export class MainComponent {
           url: '',
           file: item,
           name: item.name,
-          key: ''
         }
         arr.push(fileModel);
       });

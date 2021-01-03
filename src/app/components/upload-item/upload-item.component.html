@@ -1,13 +1,23 @@
-<div class="container dash-border w-100 border border-dark border-rounded">
-  <div class="row d-flex align-items-center">
-    <div class="col-3"><i-feather name="file-text"></i-feather></div>
-    <div class="col-6 d-flex flex-column">
-      <p>{{(fileUpload).name}}</p>
-      <p>{{(fileUpload).file.size}}MB</p>
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': ($percentage) + '%'}"></div>
+<div class="container dash-border w-100 border border-dark border-rounded p-2">
+  <div class="row d-flex align-items-center mx-0">
+    <div class="col-1 px-0"><i-feather name="file-text"></i-feather></div>
+    <div class="col-9 px-2 d-flex flex-column">
+      <p class="text-truncate mb-2">{{ fileUpload.name }}</p>
+      <p class="mb-2">{{ fileUpload.file.size / 10 }}MB</p>
     </div>
-      </div>
-    <div class="col-3">ICON</div>
+    <div class="px-0 col-1">
+      <i-feather name="{{ $percentage == 100  ? 'check-circle' : 'trash-2'}}" class="{{ $percentage == 100  ?  'text-success': 'text-danger'}}"></i-feather>
+    </div>
+  </div>
+  <div class="row mx-0 w-100">
+    <div class="progress w-100">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: ($percentage || 2) + '%' }"
+      ></div>
+    </div>
   </div>
 </div>

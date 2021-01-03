@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatherModule } from 'angular-feather';
-import {X, ChevronDown, FileText} from 'angular-feather/icons';
+import {X, ChevronDown, FileText, Trash2, ChevronUp, CheckCircle} from 'angular-feather/icons';
 
 const icons = {
   X,
   ChevronDown,
-  FileText
+  FileText,
+  Trash2,
+  ChevronUp,
+  CheckCircle
 };
 
 @NgModule({
   imports: [
+    CommonModule,
     FeatherModule.pick(icons)
   ],
   exports: [
