@@ -12,6 +12,7 @@ export class ApiService {
   private basePath = '/files';
   public downloadUrl$: Observable<string>;
   public uploadProgress$: Observable<number>;
+  public uploadTask: AngularFireUploadTask;
 
   constructor(private storage: AngularFireStorage, private db: AngularFireDatabase) { }
 
@@ -26,17 +27,21 @@ export class ApiService {
     this.uploadProgress$ = uploadProgress$;
   }
 
+  public cancelUpload(): void {
+    this.uploadTask.cancel();
+  }
+
   private uploadFileAndGetMetadata(
     filePath: string,
     fileToUpload: File,
   ): any {
-    const uploadTask: AngularFireUploadTask = this.storage.upload(
+    this.uploadTask = this.storage.upload(
       filePath,
       fileToUpload,
     );
     return {
-      uploadProgress$: uploadTask.percentageChanges(),
-      downloadUrl$: this.getDownloadUrl$(uploadTask, filePath),
+      uploadProgress$: this.uploadTask.percentageChanges(),
+      downloadUrl$: this.getDownloadUrl$(this.uploadTask, filePath),
     };
   }
 

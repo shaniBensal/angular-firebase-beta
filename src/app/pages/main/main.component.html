@@ -18,4 +18,5 @@
 <app-upload-window
   *ngIf="!!showUploadWindow"
   [selectedFiles]="uploadFiles"
+  (onClearListEmmiter)="clearList()"
 ></app-upload-window>

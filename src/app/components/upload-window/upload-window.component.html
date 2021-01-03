@@ -1,14 +1,17 @@
 <div
-  class="container border border-dark border-4 window-wrapper position-absolute rounded bg-dark"
+  class="container border border-dark border-4 position-absolute rounded bg-dark window-wrapper"
 >
   <div class="row h-100">
     <div class="d-flex flex-column w-100">
       <app-upload-header
+      [listMaxHeight]="listMaxHeight"
+      (onCancelDownloadsEmmiter)="clearList()"
+      (onChangeListHeightEmmiter)="toggleMaxHeight()"
         [fileCount]="(selectedFiles).length"
       ></app-upload-header>
-      <div class="container bg-light h-100 px-2">
+      <div class="container bg-light h-100 px-2" [ngStyle]="{'max-height': (listMaxHeight ? '100%' : '0')}">
         <div class="row py-2 mx-0" *ngFor="let item of selectedFiles">
-          <app-upload-item [fileUpload]="item" class="w-100"></app-upload-item>
+          <app-upload-item [stopFileUpload]="stopUpload" [fileUpload]="item" class="w-100"></app-upload-item>
         </div>
       </div>
     </div>

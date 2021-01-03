@@ -39,4 +39,10 @@ export class MainComponent {
       this.uploadFiles = arr;
     }
   }
+
+  public clearList(): void {
+    this.selectedFiles =[];
+    this.uploadFiles = [];
+    this.showUploadWindow = false;
+  }
 }
