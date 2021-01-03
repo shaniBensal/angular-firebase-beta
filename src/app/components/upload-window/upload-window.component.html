@@ -1,10 +1,16 @@
 <div
-  class="container border border-dark border-4 window-wrapper position-absolute rounded bg-dark "
+  class="container border border-dark border-4 window-wrapper position-absolute rounded bg-dark"
 >
   <div class="row h-100">
     <div class="d-flex flex-column w-100">
-      <app-upload-header [fileCount]="selectedFiles.length"></app-upload-header>
-      <app-upload-list class="h-100"></app-upload-list>
+      <app-upload-header
+        [fileCount]="(selectedFiles).length"
+      ></app-upload-header>
+      <div class="container bg-light h-100 px-2">
+        <div class="row py-2 mx-0" *ngFor="let item of selectedFiles">
+          <app-upload-item [fileUpload]="item" class="w-100"></app-upload-item>
+        </div>
+      </div>
     </div>
   </div>
 </div>

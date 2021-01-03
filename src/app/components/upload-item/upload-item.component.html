@@ -2,10 +2,12 @@
   <div class="row d-flex align-items-center">
     <div class="col-3"><i-feather name="file-text"></i-feather></div>
     <div class="col-6 d-flex flex-column">
-      <p>{{fileUpload.name}}</p>
-      <p>{{fileUpload.size}}MB</p>
-      <p>BAR</p>
+      <p>{{(fileUpload).name}}</p>
+      <p>{{(fileUpload).file.size}}MB</p>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" [ngStyle]="{'width': (fileUpload.percentage|async) + '%'}"></div>
     </div>
+      </div>
     <div class="col-3">ICON</div>
   </div>
 </div>

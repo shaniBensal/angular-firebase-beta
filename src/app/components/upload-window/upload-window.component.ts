@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FileModel } from 'src/app/models/file.model';
 
 @Component({
@@ -7,10 +8,11 @@ import { FileModel } from 'src/app/models/file.model';
   styleUrls: ['./upload-window.component.scss']
 })
 export class UploadWindowComponent implements OnInit {
-  public selectedFiles: FileModel[] = [];
+  @Input() public selectedFiles: FileModel[];
   constructor() { }
 
   ngOnInit() {
+    console.log(this.selectedFiles)
   }
 
 }

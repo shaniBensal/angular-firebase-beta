@@ -1,5 +1,9 @@
+import { Observable } from 'rxjs';
+
 export interface FileModel {
-  id: string;
+  key: string;
   name: string;
-  size: number;
+  url: string;
+  file: File;
+  percentage?: Observable<number>;
 }
