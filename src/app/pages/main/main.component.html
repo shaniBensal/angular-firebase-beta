@@ -1,12 +1,21 @@
-<button type="button" class="btn btn-secondary">
-  <input type="file" multiple=true (change)="selectFile($event)"/>
-</button>
+  <input
+    type="file"
+    multiple="true"
+    (change)="selectFile($event)"
+    [hidden]="true"
+    id="input-file-id"
+  />
+  <label for="input-file-id" type="button" class="btn btn-secondary">Choose Files</label
+  >
 <button
   class="btn btn-success btn-sm"
-  [disabled]="!selectedFiles"
+  [disabled]="!selectedFiles.length"
   (click)="upload()"
 >
   Upload
 </button>
 
-<app-upload-window *ngIf="!!showUploadWindow" [selectedFiles]="(selectedFiles)"></app-upload-window>
+<app-upload-window
+  *ngIf="!!showUploadWindow"
+  [selectedFiles]="uploadFiles"
+></app-upload-window>

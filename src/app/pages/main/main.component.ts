@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { finalize, map, tap } from 'rxjs/operators';
 import { FileModel } from 'src/app/models/file.model';
 import { ApiService } from 'src/app/_service/api.service';
 
@@ -12,7 +12,7 @@ import { ApiService } from 'src/app/_service/api.service';
 })
 export class MainComponent {
   public showUploadWindow: boolean = false;
-  selectedFiles: File[] = [];
+  public selectedFiles: File[] = [];
   public uploadFiles: FileModel[] = [];
 
   constructor(private storage: AngularFireStorage, private apiService: ApiService) { }
@@ -27,7 +27,7 @@ export class MainComponent {
   upload(): void {
     if (this.selectedFiles.length > 0) {
       this.showUploadWindow = true;
-      let arr = [];
+      let arr: FileModel[] = [];
       Object.values(this.selectedFiles).map(item => {
         let fileModel: FileModel = {
           url: '',
@@ -35,10 +35,9 @@ export class MainComponent {
           name: item.name,
           key: ''
         }
-        fileModel.percentage = this.apiService.pushFileToStorage(fileModel);
         arr.push(fileModel);
       });
-      this.selectedFiles = arr;
+      this.uploadFiles = arr;
     }
   }
 }

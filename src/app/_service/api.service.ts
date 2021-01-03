@@ -11,23 +11,41 @@ import { from, Observable } from 'rxjs';
 export class ApiService {
   private basePath = '/files';
   public downloadUrl$: Observable<string>;
+  public uploadProgress$: Observable<number>;
 
-  constructor(private fireStorage: AngularFireStorage, private db: AngularFireDatabase) { }
+  constructor(private storage: AngularFireStorage, private db: AngularFireDatabase) { }
 
-  public pushFileToStorage(selectedFile: FileModel): Observable<number> {
-    const { name } = selectedFile;
-    const filePath = `${new Date().getTime()}_${name}`;
-    const uploadTask: AngularFireUploadTask = this.fireStorage.upload(
-      filePath,
-      selectedFile,
+  public pushFileToStorage(fileToUpload: FileModel): any {
+    const mediaFolderPath = new Date().getTime() + '_' + fileToUpload.name;
+
+    const { uploadProgress$ } = this.uploadFileAndGetMetadata(
+      mediaFolderPath,
+      fileToUpload.file
     );
-    this.getDownloadUrl$(uploadTask, filePath);
-    return uploadTask.percentageChanges()
+
+    this.uploadProgress$ = uploadProgress$;
   }
 
-  public getDownloadUrl$(uploadTask: AngularFireUploadTask, path: string): Observable<string> {
+  private uploadFileAndGetMetadata(
+    filePath: string,
+    fileToUpload: File,
+  ): any {
+    const uploadTask: AngularFireUploadTask = this.storage.upload(
+      filePath,
+      fileToUpload,
+    );
+    return {
+      uploadProgress$: uploadTask.percentageChanges(),
+      downloadUrl$: this.getDownloadUrl$(uploadTask, filePath),
+    };
+  }
+
+  private getDownloadUrl$(
+    uploadTask: AngularFireUploadTask,
+    path: string,
+  ): Observable<string> {
     return from(uploadTask).pipe(
-      switchMap((_) => this.fireStorage.ref(path).getDownloadURL()),
+      switchMap((_) => this.storage.ref(path).getDownloadURL()),
     );
   }
 

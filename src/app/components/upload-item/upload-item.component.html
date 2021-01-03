@@ -5,7 +5,7 @@
       <p>{{(fileUpload).name}}</p>
       <p>{{(fileUpload).file.size}}MB</p>
       <div class="progress">
-        <div class="progress-bar" role="progressbar" [ngStyle]="{'width': (fileUpload.percentage|async) + '%'}"></div>
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': ($percentage) + '%'}"></div>
     </div>
       </div>
     <div class="col-3">ICON</div>

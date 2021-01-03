@@ -12,7 +12,6 @@ export class UploadWindowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.selectedFiles)
   }
 
 }
