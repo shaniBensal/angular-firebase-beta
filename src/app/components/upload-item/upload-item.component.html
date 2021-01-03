@@ -8,7 +8,7 @@
     <div class="px-0 col-1">
       <i-feather *ngIf="$percentage == 100; else trashIcon;" name="check-circle" class="text-success"></i-feather>
       <ng-template #trashIcon>
-          <i-feather name="trash-2" class="text-danger" (click)="cancelUpload()"></i-feather>
+          <i-feather name="trash-2" class="text-danger cursor" (click)="cancelUpload()"></i-feather>
       </ng-template>
     </div>
   </div>

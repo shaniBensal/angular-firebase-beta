@@ -18,7 +18,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
-
 @NgModule({
   declarations: [
     AppComponent,

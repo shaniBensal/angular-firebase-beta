@@ -9,8 +9,8 @@
       (onChangeListHeightEmmiter)="toggleMaxHeight()"
         [fileCount]="(selectedFiles).length"
       ></app-upload-header>
-      <div class="container bg-light h-100 px-2" [ngStyle]="{'max-height': (listMaxHeight ? '100%' : '0')}">
-        <div class="row py-2 mx-0" *ngFor="let item of selectedFiles">
+      <div class="container bg-light h-100 px-2 upload-list" [ngStyle]="{'max-height': (listMaxHeight ? '100%' : '0')}">
+        <div class="row pt-2 mx-0" *ngFor="let item of selectedFiles">
           <app-upload-item [stopFileUpload]="stopUpload" [fileUpload]="item" class="w-100"></app-upload-item>
         </div>
       </div>
