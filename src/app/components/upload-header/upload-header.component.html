@@ -1,0 +1,9 @@
+<div class="container p-2">
+  <div class="row d-flex justify-content-between mx-0">
+    <p class="mb-0 text-light">Uploading {{fileCount}} Files</p>
+    <div class="right">
+      <i-feather name="{{listMaxHeight?'chevron-down': 'chevron-up'}}" class="text-light pr-1 cursor" (click)="listHeightToggle()"></i-feather>
+      <i-feather name="x" class="text-light cursor" (click)="cancelDownloads()"></i-feather>
+    </div>
+  </div>
+</div>

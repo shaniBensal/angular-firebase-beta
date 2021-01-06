@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row mb-2">
+    <input
+      type="file"
+      multiple="true"
+      (change)="selectFile($event)"
+      [hidden]="true"
+      id="input-file-id"
+    />
+    <label for="input-file-id" type="button" class="btn btn-secondary mb-0 mr-2"
+      >Choose Files</label
+    >
+    <button
+      class="btn btn-success btn-sm"
+      [disabled]="!selectedFiles.length"
+      (click)="upload()"
+    >
+      Upload
+    </button>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <label *ngIf="!!selectedFiles.length"
+      >{{ selectedFiles.length }} selected</label
+    >
+  </div>
+</div>
+<app-uploaded-file-list [list]="(uploadedList | async)"
+(onRemoveItem)="removeItem($event)"
+></app-uploaded-file-list>
+
+<app-upload-window
+  *ngIf="!!showUploadWindow"
+  [selectedFiles]="uploadFiles"
+  (onClearListEmmiter)="clearList()"
+></app-upload-window>
+
