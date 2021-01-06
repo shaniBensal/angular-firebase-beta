@@ -21,7 +21,12 @@
         <td>
           <p>{{ item.fileType }}</p>
         </td>
-        <td>hhh</td>
+        <td class="cursor">
+          <a [download]="item.url" [href]="item.url">Download</a>
+        </td>
+        <td class="cursor">
+          <i-feather name="trash-2" class="text-danger" (click)="deleteFromDB(item.id)"></i-feather>
+        </td>
       </tr>
     </tbody>
   </table>

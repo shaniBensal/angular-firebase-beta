@@ -24,7 +24,9 @@
     >
   </div>
 </div>
-<app-uploaded-file-list [list]="(uploadedList | async)"></app-uploaded-file-list>
+<app-uploaded-file-list [list]="(uploadedList | async)"
+(onRemoveItem)="removeItem($event)"
+></app-uploaded-file-list>
 
 <app-upload-window
   *ngIf="!!showUploadWindow"

@@ -48,6 +48,10 @@ export class MainComponent implements OnDestroy {
     this.showUploadWindow = false;
   }
 
+  public removeItem(itemId: string): void{
+    this.storageService.deleteItemById(itemId);
+  }
+
   ngOnDestroy(): void {
     this.isAlive = false;
   }
