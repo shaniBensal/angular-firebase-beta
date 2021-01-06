@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
-import { finalize, map, tap } from 'rxjs/operators';
-import { FileModel } from 'src/app/models/file.model';
-import { ApiService } from 'src/app/_service/api.service';
+import { Component } from '@angular/core';
+import { FileModel } from '../../models/file.model';
 
 @Component({
   selector: 'app-main',
@@ -15,7 +11,7 @@ export class MainComponent {
   public selectedFiles: File[] = [];
   public uploadFiles: FileModel[] = [];
 
-  constructor(private storage: AngularFireStorage, private apiService: ApiService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

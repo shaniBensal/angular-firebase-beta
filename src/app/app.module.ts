@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadHeaderComponent } from './components/upload-header/upload-header.component';
 import { UploadItemComponent } from './components/upload-item/upload-item.component';
-import { ApiService } from './_service/api.service';
 import { UploadWindowComponent } from './components/upload-window/upload-window.component';
 import { MainComponent } from './pages/main/main.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +15,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
+import { FileApiService } from './_service/file-api.service';
+import { StorageApiService } from './_service/storage-api.service';
+import { UtilService } from './_service/utils.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [ApiService],
+  providers: [FileApiService, UtilService, StorageApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

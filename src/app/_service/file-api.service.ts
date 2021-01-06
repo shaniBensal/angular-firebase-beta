@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { FileModel } from '../models/file.model';
-import { Observable } from 'rxjs';
+import { from, Observable,  } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class FileApiService {
   public uploadProgress$: Observable<number>;
+  public downloadUrl$: Observable<string>;
   public uploadTask: AngularFireUploadTask;
 
   constructor(private storage: AngularFireStorage) { }
 
   public pushFileToStorage(fileToUpload: FileModel): any {
     const mediaFolderPath = new Date().getTime() + '_' + fileToUpload.name;
-    const { uploadProgress$ } = this.uploadFileAndGetMetadata(
+    const { uploadProgress$, downloadUrl$ } = this.uploadFileAndGetMetadata(
       mediaFolderPath,
       fileToUpload.file
     );
     this.uploadProgress$ = uploadProgress$;
+    this.downloadUrl$ = downloadUrl$;
   }
 
   public cancelUpload(): void {
@@ -34,7 +37,16 @@ export class ApiService {
       fileToUpload,
     );
     return {
-      uploadProgress$: this.uploadTask.percentageChanges()
+      uploadProgress$: this.uploadTask.percentageChanges(),
+      downloadUrl$: this.getDownloadUrl$(filePath)
     };
+  }
+
+  private getDownloadUrl$(
+    path: string,
+  ): Observable<string> {
+    return from(this.uploadTask).pipe(
+      switchMap((_) => this.storage.ref(path).getDownloadURL()),
+    );
   }
 }
