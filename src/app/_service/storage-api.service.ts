@@ -22,7 +22,7 @@ export class StorageApiService {
             ...item.payload.doc.data() as {}
           } as FileDetails
         });
-        return this.utilService.arrangeData(itemList);
+        return itemList;
       }
     }
     ));

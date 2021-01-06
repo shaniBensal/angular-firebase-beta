@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil, takeWhile } from 'rxjs/operators';
+import { FileDetails } from '../../models/file-details.model';
 import { FileModel } from '../../models/file.model';
+import { StorageApiService } from '../../_service/storage-api.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnDestroy {
   public showUploadWindow: boolean = false;
   public selectedFiles: File[] = [];
   public uploadFiles: FileModel[] = [];
+  private isAlive: boolean = true;
+  public uploadedList: Observable<FileDetails[]>;
 
-  constructor() { }
+  constructor(private storageService: StorageApiService) { }
 
   ngOnInit(): void {
+    this.uploadedList = this.storageService.getList();
   }
 
   selectFile(event): void {
@@ -26,7 +33,6 @@ export class MainComponent {
       let arr: FileModel[] = [];
       Object.values(this.selectedFiles).map(item => {
         let fileModel: FileModel = {
-          url: '',
           file: item,
           name: item.name,
         }
@@ -40,5 +46,9 @@ export class MainComponent {
     this.selectedFiles =[];
     this.uploadFiles = [];
     this.showUploadWindow = false;
+  }
+
+  ngOnDestroy(): void {
+    this.isAlive = false;
   }
 }

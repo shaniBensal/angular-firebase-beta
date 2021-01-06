@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { UploadHeaderComponent } from './components/upload-header/upload-header.component';
 import { UploadItemComponent } from './components/upload-item/upload-item.component';
 import { UploadWindowComponent } from './components/upload-window/upload-window.component';
+import { UploadedFileListComponent } from './components/uploaded-file-list/uploaded-file-list.component';
 import { MainComponent } from './pages/main/main.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IconsModule } from './icons.module';
@@ -27,7 +28,8 @@ import { UtilService } from './_service/utils.service';
     MainComponent,
     UploadHeaderComponent,
     UploadItemComponent,
-    UploadWindowComponent
+    UploadWindowComponent,
+    UploadedFileListComponent
   ],
   imports: [
     BrowserModule,
