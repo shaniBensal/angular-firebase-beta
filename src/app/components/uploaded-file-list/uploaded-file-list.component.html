@@ -1,0 +1,33 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let header of tableHeaders" scope="col">
+          {{ header }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list; let i = index">
+        <td>
+          <p>{{ i + 1 }}</p>
+        </td>
+        <td>
+          <p>{{ item.name }}</p>
+        </td>
+        <td>
+          <p>{{ item.size / 10 }}</p>
+        </td>
+        <td>
+          <p>{{ item.fileType }}</p>
+        </td>
+        <td class="cursor">
+          <a [download]="item.url" [href]="item.url">Download</a>
+        </td>
+        <td class="cursor">
+          <i-feather name="trash-2" class="text-danger" (click)="deleteFromDB(item.id)"></i-feather>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

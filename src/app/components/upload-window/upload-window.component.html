@@ -1,0 +1,19 @@
+<div
+  class="container border border-dark border-4 position-absolute rounded bg-dark window-wrapper"
+>
+  <div class="row h-100">
+    <div class="d-flex flex-column w-100">
+      <app-upload-header
+      [listMaxHeight]="listMaxHeight"
+      (onCancelDownloadsEmmiter)="clearList()"
+      (onChangeListHeightEmmiter)="toggleMaxHeight()"
+        [fileCount]="(selectedFiles).length"
+      ></app-upload-header>
+      <div class="container bg-light h-100 px-2 upload-list" [ngStyle]="{'max-height': (listMaxHeight ? '100%' : '0')}">
+        <div class="row pt-2 mx-0" *ngFor="let item of selectedFiles">
+          <app-upload-item [stopFileUpload]="stopUpload" [fileUpload]="item" class="w-100"></app-upload-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
